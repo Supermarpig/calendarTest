@@ -53,7 +53,7 @@ const Calendar: React.FC<CalendarProps> = ({ initialDate = new Date() }) => {
                 key={day}
                 className={`text-center p-2 cursor-pointer ${extraClass} ${month === currentMonth && year === currentYear ? '' : 'cursor-not-allowed opacity-50'}`}
                 onClick={() => handleDayClick(dateObj)}
-            >
+            > 
                 {day}
             </div>
         );
@@ -62,9 +62,9 @@ const Calendar: React.FC<CalendarProps> = ({ initialDate = new Date() }) => {
     return (
         <div className="p-5 bg-gray-200 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-4">
-                <button onClick={() => changeMonth(-1)} className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">« 上個月</button>
+                <button onClick={() => changeMonth(-1)} className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">＜</button>
                 <span className="text-center font-bold text-lg">{`${year}年${month + 1}月`}</span>
-                <button onClick={() => changeMonth(1)} className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">下個月 »</button>
+                <button onClick={() => changeMonth(1)} className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">＞</button>
             </div>
             <div className="grid grid-cols-7 gap-1">
                 {daysOfWeek.map((day, index) => (
