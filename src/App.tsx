@@ -1,10 +1,10 @@
-import Calendar from './components/Calendar';
+import Single from './components/single'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Calendar />
+        <Single />
       </header>
     </div>
   );
