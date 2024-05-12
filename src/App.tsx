@@ -1,4 +1,5 @@
 import Single from './components/single'
+// import Range from './components/range'
 
 function App() {
   return (

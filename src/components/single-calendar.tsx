@@ -147,9 +147,11 @@ function SingleCalendarComponent({
           {days.map((day) => {
             const date = day?.getDate();
             const key = crypto.randomUUID();
+            const isCurrentMonth = day?.getMonth() === curMonth.getMonth();
+            const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;
             if (day && (day < minDate || day > maxDate)) {
               return (
-                <CalendarDay key={key} className={DAY_COLOR.disabled}>
+                <CalendarDay key={key} className={`${DAY_COLOR.disabled} ${dayClass}`}>
                   {date}
                 </CalendarDay>
               );
@@ -158,14 +160,14 @@ function SingleCalendarComponent({
               return (
                 <CalendarDay
                   key={key}
-                  className={`${DAY_COLOR.active} flex flex-col items-center justify-center`}
+                  className={`${DAY_COLOR.active} flex flex-col items-center justify-center ${dayClass}`}
                   onClick={() => handleSelect(day)}
                 >
                   <span
                     style={{ backgroundColor: `${themeColor}` }}
                     className={DAY_COLOR.activeBefore}
                   />
-                  <span className={selectText && 'h-[16px]'}>{date}</span>
+                  <span className={selectText && 'h-[16px]' && dayClass}>{date}</span>
                   {selectText && (
                     <span className="w-full small-regular ">{selectText}</span>
                   )}
@@ -175,7 +177,7 @@ function SingleCalendarComponent({
             return (
               <CalendarDay
                 key={key}
-                className={DAY_COLOR.idle}
+                className={DAY_COLOR.idle && dayClass}
                 onClick={() => handleSelect(day)}
               >
                 {date}

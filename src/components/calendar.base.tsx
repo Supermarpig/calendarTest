@@ -1,9 +1,4 @@
-'use client';
-
-import { Select } from '../react-ui';
 import { cn } from '../libs/cn';
-
-import { ChevronDownBoldIcon } from './icons';
 
 import { useCallback, ReactElement, forwardRef } from 'react';
 
@@ -137,35 +132,25 @@ type CalendarHeaderChooserProps = React.ComponentPropsWithoutRef<'div'> & {
 
 function CalendarHeaderChooser({
   placeholder,
-  icon = <ChevronDownBoldIcon color="#222" />,
   selectItems,
   disabled,
   value,
   onValueChange
 }: CalendarHeaderChooserProps) {
-  const handleChange = useCallback((value: string) => {
-    onValueChange(Number(value));
-  }, []);
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    onValueChange(Number(event.target.value));
+  }, [onValueChange]);
+
 
   return (
-    <Select.Root onValueChange={handleChange} disabled={disabled} value={value}>
-      <Select.Trigger
-        data-state="open"
-        className={`h-5 w-fit flex gap-1 ${disabled && 'border-0'} `}
-      >
-        <Select.Value placeholder={placeholder} />
-        {!disabled && icon}
-      </Select.Trigger>
-      <Select.Content className="relative flex flex-row items-center w-full h-fit">
-        <Select.Group className="w-full h-40 bg-white-500">
-          {selectItems.map((item) => (
-            <Select.Item value={item} key={item} className="bg-white-500">
-              {item}
-            </Select.Item>
-          ))}
-        </Select.Group>
-      </Select.Content>
-    </Select.Root>
+    <div className={`flex items-center gap-1 ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
+      <select onChange={handleChange} value={value} disabled={disabled} className="select-css">
+        <option value="">{placeholder}</option>
+        {selectItems.map((item) => (
+          <option value={item} key={item}>{item}</option>
+        ))}
+      </select>
+    </div>
   );
 }
 

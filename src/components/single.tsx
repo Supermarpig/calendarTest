@@ -9,11 +9,15 @@ function Single() {
   const handleChange = (val: SingleCalendarValue) => {
     setValue(val);
   };
+
+  const maxDate = new Date();
+  maxDate.setMonth(maxDate.getMonth() + 3);
+
   const data = {
     themeColor: '#3EA5D9',
-    defaultMonth: new Date(2024, 2, 3),
+    defaultMonth: new Date(),
     minDate: new Date(1924, 1, 1),
-    maxDate: new Date(),
+    maxDate: maxDate,
     selectText: ''
   };
   return (
