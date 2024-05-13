@@ -139,7 +139,7 @@ function SingleCalendarComponent({
   }
 
   return (
-    <div className="desktop:w-[284px] min-w-[284px] w-full border border-stone-300">
+    <div className="desktop:w-[284px] min-w-[284px] w-full border border-stone-300 select-none">
       <SingleHeader curMonth={curMonth} setCurMonth={setCurMonth} />
       <div className="pt-1 flex flex-wrap flex-row w-full justify-between ">
         <CalendarWeekday weekdays={weekdays} className="pb-1" />
@@ -148,7 +148,7 @@ function SingleCalendarComponent({
             const date = day?.getDate();
             const key = crypto.randomUUID();
             const isCurrentMonth = day?.getMonth() === curMonth.getMonth();
-            const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;``
+            const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;
             if (day && (day < minDate || day > maxDate)) {
               return (
                 <CalendarDay key={key} className={`${DAY_COLOR.disabled} ${dayClass}`}>
@@ -161,7 +161,7 @@ function SingleCalendarComponent({
                 <CalendarDay
                   key={key}
                   className={`${DAY_COLOR.active} flex flex-col items-center justify-center`}
-                  onClick={() => handleSelect(day)}
+                  onClick={() => isCurrentMonth &&  handleSelect(day)}
                 >
                   <span
                     style={{ backgroundColor: `${themeColor}` }}
@@ -178,7 +178,7 @@ function SingleCalendarComponent({
               <CalendarDay
                 key={key}
                 className={DAY_COLOR.idle && dayClass}
-                onClick={() => handleSelect(day)}
+                onClick={() => isCurrentMonth &&  handleSelect(day)}
               >
                 {date}
               </CalendarDay>

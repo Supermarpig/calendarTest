@@ -11,7 +11,7 @@ function Single() {
   };
 
   const maxDate = new Date();
-  maxDate.setMonth(maxDate.getMonth() + 3);
+  maxDate.setMonth(maxDate.getMonth() + 24);
 
   const data = {
     themeColor: '#3EA5D9',
@@ -22,7 +22,8 @@ function Single() {
   };
   return (
     <>
-      <div>
+      <div className='flex items-center justify-center flex-col' >
+        <h3 className='font-bold text-black'>單月曆樣式</h3>
         <div>minDate:{transDateIntoString(data.minDate)}</div>
         <div>maxDate:{transDateIntoString(data.maxDate)}</div>
         <div>defaultMonth:{transDateIntoString(data.defaultMonth)}</div>
