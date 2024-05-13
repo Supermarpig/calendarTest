@@ -5,12 +5,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className='max-w-[350px]'>
-          <Single />
-        </div>
+        <div className='flex flex-col items-center justify-start'>
 
-        <div className='max-w-[350px]'>
-          <Range />
+          <div className='max-w-[350px]'>
+            <Single />
+          </div>
+
+          <div className='max-w-[350px]'>
+            <Range />
+          </div>
         </div>
       </header>
     </div>
