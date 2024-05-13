@@ -80,7 +80,7 @@ const CalendarWeekday = forwardRef<
   CalendarWeekdayProps
 >(({ className, weekdays = weekChn, ...props }, ref) => {
   const baseStyle =
-    'border-b border-b-stone-300 min-w-8 w-[14%] text-center small-regular text-slate-300 grow';
+    'border-b border-b-stone-300 min-w-8 w-[14%] text-center small-regular grow';
   return (
     <>
       {weekdays.map((weekday) => (

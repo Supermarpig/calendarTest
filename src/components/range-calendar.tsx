@@ -90,7 +90,7 @@ function RangeCalendarComponent({
         curMonth={new Date(curMonth.getFullYear(), curMonth.getMonth() + 1, 1)}
         {...RangeCalendarComponentProps}
       >
-        <RangeCalendarHeader
+        {/* <RangeCalendarHeader
           direction="right"
           handleSwitch={(direction, isDisabled) =>
             handleSwitch(direction, isDisabled)
@@ -98,7 +98,7 @@ function RangeCalendarComponent({
           curMonth={
             new Date(curMonth.getFullYear(), curMonth.getMonth() + 1, 1)
           }
-        />
+        /> */}
         <CalendarWeekday />
       </RangeCalendarItem>
     </div>

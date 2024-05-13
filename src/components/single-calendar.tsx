@@ -122,7 +122,7 @@ function SingleCalendarComponent({
 
   const DAY_COLOR = (dayColor as SingleDayColorType) || {
     idle: 'text-slate-500 ',
-    active: 'text-white-500',
+    active: 'text-white',
     activeBefore: 'absolute z-[-1] size-8 rounded-full',
     disabled: 'text-slate-200'
   };
@@ -148,7 +148,7 @@ function SingleCalendarComponent({
             const date = day?.getDate();
             const key = crypto.randomUUID();
             const isCurrentMonth = day?.getMonth() === curMonth.getMonth();
-            const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;
+            const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;``
             if (day && (day < minDate || day > maxDate)) {
               return (
                 <CalendarDay key={key} className={`${DAY_COLOR.disabled} ${dayClass}`}>
@@ -160,16 +160,16 @@ function SingleCalendarComponent({
               return (
                 <CalendarDay
                   key={key}
-                  className={`${DAY_COLOR.active} flex flex-col items-center justify-center ${dayClass}`}
+                  className={`${DAY_COLOR.active} flex flex-col items-center justify-center`}
                   onClick={() => handleSelect(day)}
                 >
                   <span
                     style={{ backgroundColor: `${themeColor}` }}
                     className={DAY_COLOR.activeBefore}
                   />
-                  <span className={selectText && 'h-[16px]' && dayClass}>{date}</span>
+                  <span className={selectText && 'h-[16px]'  }>{date}</span>
                   {selectText && (
-                    <span className="w-full small-regular ">{selectText}</span>
+                    <span className={`w-full small-regular ${DAY_COLOR.active}`}>{selectText}</span>
                   )}
                 </CalendarDay>
               );

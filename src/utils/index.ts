@@ -43,12 +43,14 @@ export function getMonthDays(year: number, month: number) {
   const nextMonthYear = month === 11 ? year + 1 : year;
   const nextMonth = month === 11 ? 0 : month + 1;
 
-  // 當總天數小於42天時，添加下個月的開始幾天
-  if (days.length < 42) {
-    let i = 1;
-    while (days.length < 42) {
-      days.push(new Date(nextMonthYear, nextMonth, i++));
-    }
+  // 最後一天是星期幾
+  const lastDayDate = new Date(year, month, lastDay);
+  const lastDayOfWeek = lastDayDate.getDay();
+
+  // 計算需要補足的天數到該週的星期六
+  const daysToAdd = 6 - lastDayOfWeek;  // 從星期天開始計算，所以用6減去最後一天的星期數
+  for (let i = 1; i <= daysToAdd; i++) {
+    days.push(new Date(nextMonthYear, nextMonth, i));
   }
 
   return days;
