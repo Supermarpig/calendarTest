@@ -53,6 +53,9 @@ export function RangeCalendarItem({
             const key = crypto.randomUUID();
             const date = day?.getDate();
 
+            const isCurrentMonth = day?.getMonth() === curMonth.getMonth();
+            const dayClass = `${isCurrentMonth ? 'text-slate-500' : 'text-slate-200'} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;
+
             const isValid =
               day && minDate && maxDate && day > minDate && day < maxDate;
             const isBeforeStart = day && value.start && day < value.start;
@@ -70,7 +73,7 @@ export function RangeCalendarItem({
             ) {
               // out of range
               return (
-                <CalendarDay key={key} className={dayColor.disabled}>
+                <CalendarDay key={key} className={dayColor.disabled && dayClass}>
                   {date}
                 </CalendarDay>
               );
@@ -102,7 +105,7 @@ export function RangeCalendarItem({
                 <CalendarDay
                   key={key}
                   className={`${dayColor.isRangeEnd} flex flex-col justify-center `}
-                  onClick={() => handleSelect(day)}
+                  onClick={() => isCurrentMonth &&  handleSelect(day)}
                 >
                   <span
                     className={dayColor.isRangeBefore}
@@ -130,7 +133,7 @@ export function RangeCalendarItem({
                 <CalendarDay
                   key={key}
                   className={`${dayColor.isRangeStart} flex flex-col justify-center `}
-                  onClick={() => handleSelect(day)}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
                 >
                   <span
                     className={dayColor.isRangeBefore}
@@ -158,7 +161,7 @@ export function RangeCalendarItem({
                 <CalendarDay
                   className={`${dayColor.active} flex flex-col justify-center `}
                   key={key}
-                  onClick={() => handleSelect(day)}
+                  onClick={() => isCurrentMonth &&  handleSelect(day)}
                 >
                   <span
                     className="desktop:size-8 size-[45px] rounded-full absolute z-[-1]"
@@ -186,7 +189,7 @@ export function RangeCalendarItem({
                 <CalendarDay
                   key={key}
                   className={dayColor.isRange}
-                  onClick={() => handleSelect(day)}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
                   style={{
                     background: `${convertHexToRGBA(themeColor, 0.25)}`
                   }}
@@ -200,8 +203,8 @@ export function RangeCalendarItem({
             return (
               <CalendarDay
                 key={key}
-                className={dayColor.idle}
-                onClick={() => handleSelect(day)}
+                className={dayColor.idle && dayClass}
+                onClick={() => isCurrentMonth &&  handleSelect(day)}
               >
                 {date}
                 <CalendarDayHoverSpan />

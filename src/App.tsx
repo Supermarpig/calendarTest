@@ -5,10 +5,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Single />
+        <div className='max-w-[350px]'>
+          <Single />
+        </div>
 
-
-        <Range />
+        <div className='max-w-[350px]'>
+          <Range />
+        </div>
       </header>
     </div>
   );

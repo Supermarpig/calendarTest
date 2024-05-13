@@ -73,8 +73,23 @@ function RangeCalendarComponent({
   };
 
   return (
-    <div className="hidden desktop:flex flex-row gap-2">
+    <div className="desktop:flex flex-row gap-2 select-none">
       <RangeCalendarItem curMonth={curMonth} {...RangeCalendarComponentProps}>
+        <RangeCalendarHeader
+          direction="both"
+          handleSwitch={(direction, isDisabled) =>
+            handleSwitch(direction, isDisabled)
+          }
+          curMonth={curMonth}
+        />        
+        <CalendarWeekday />
+      </RangeCalendarItem>
+
+      {/* 如果要顯示兩個月曆就把她打開 */}
+      {/* <RangeCalendarItem
+        curMonth={new Date(curMonth.getFullYear(), curMonth.getMonth() + 1, 1)}
+        {...RangeCalendarComponentProps}
+      >
         <RangeCalendarHeader
           direction="right"
           handleSwitch={(direction, isDisabled) =>
@@ -85,22 +100,7 @@ function RangeCalendarComponent({
           }
         />
         <CalendarWeekday />
-      </RangeCalendarItem>
-      <RangeCalendarItem
-        curMonth={new Date(curMonth.getFullYear(), curMonth.getMonth() + 1, 1)}
-        {...RangeCalendarComponentProps}
-      >
-        {/* <RangeCalendarHeader
-          direction="right"
-          handleSwitch={(direction, isDisabled) =>
-            handleSwitch(direction, isDisabled)
-          }
-          curMonth={
-            new Date(curMonth.getFullYear(), curMonth.getMonth() + 1, 1)
-          }
-        /> */}
-        <CalendarWeekday />
-      </RangeCalendarItem>
+      </RangeCalendarItem> */}
     </div>
   );
 }

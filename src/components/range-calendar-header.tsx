@@ -2,7 +2,7 @@ import { useConfigContext } from '../provider/config-provider';
 import { CalendarChevron, CalendarHeader } from './calendar.base';
 
 type RangeCalendarHeaderProps = {
-  direction: 'left' | 'right';
+  direction: 'left' | 'right' | 'both';
   curMonth: Date;
   handleSwitch: (direction: 'left' | 'right', isDisabled: boolean) => void;
 };
@@ -28,12 +28,12 @@ export function RangeCalendarHeader({
   const isDisabledMax = curMonth.getTime() > maxDate.getTime() - 1;
 
   return (
-    <CalendarHeader className="p-1 min-h-8 relative">
-      {direction === 'left' && (
+    <CalendarHeader className="p-1 min-h-8 relative flex justify-between items-center">
+      {(direction === 'left' || direction === 'both') && (
         <CalendarChevron
-          disabled={isDisabledMin || false}
+          disabled={isDisabledMin}
           color={themeColor}
-          onClick={() => handleSwitch(direction, isDisabledMin)}
+          onClick={() => handleSwitch('left', isDisabledMin)}
           className="absolute left-8 top-[calc(50%-11px)] size-5"
         />
       )}
@@ -42,11 +42,12 @@ export function RangeCalendarHeader({
         <span>{curMonth.getFullYear()} 年</span>
         <span>{curMonth.getMonth() + 1}月</span>
       </div>
-      {direction === 'right' && (
+
+      {(direction === 'right' || direction === 'both') && (
         <CalendarChevron
           color={themeColor}
-          disabled={isDisabledMax || false}
-          onClick={() => handleSwitch(direction, isDisabledMax)}
+          disabled={isDisabledMax}
+          onClick={() => handleSwitch('right', isDisabledMax)}
           className="rotate-180 absolute right-8 top-[calc(50%-11px)] size-5"
         />
       )}

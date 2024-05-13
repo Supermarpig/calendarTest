@@ -44,6 +44,7 @@ function Range() {
   };
   return (
     <>
+      <div className='flex items-center justify-center font-bold'>選取月曆模式</div>
       <div className="hidden desktop:block">
         <label className="relative">
           <span className="absolute top-0 left-2 ">START</span>
@@ -74,8 +75,8 @@ function Range() {
         themeColor={defaultValue.themeColor}
         minDate={new Date(2024, 0, 1)}
         maxDate={new Date(2025, 0, 25)}
-        startText="去程"
-        endText="回程"
+        startText="start"
+        endText="end"
       />
 
       <RangeMCalendar {...RangeMCalendarProps} />
