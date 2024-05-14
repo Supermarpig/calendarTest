@@ -9,15 +9,28 @@ import { weekChn } from '../constants/constants';
 // ========================================================================
 
 type CalendarDayElement = React.ElementRef<'div'>;
-type CalendarDayProps = React.ComponentPropsWithoutRef<'div'>;
+type CalendarDayProps = React.ComponentPropsWithoutRef<'div'> & {
+  date: Date;
+};
 
 const CalendarDay = forwardRef<CalendarDayElement, CalendarDayProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, date, ...props }, ref) => {
     const baseStyle =
       'group grow body-regular cursor-pointer  desktop:min-w-8  min-w-[45px] w-[14%] text-center desktop:h-8 h-[45px] flex items-center  justify-center rounded-full relative';
 
+    const isToday = (date: Date) => {
+      const today = new Date();
+      return (
+        date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear()
+      );
+    };
+
+    const todayClass = isToday(date) ? 'bg-[#ffff76]' : '';
+
     return (
-      <div className={cn(baseStyle, className)} {...props} ref={ref}>
+      <div className={cn(baseStyle, todayClass, className)} {...props} ref={ref}>
         {children}
       </div>
     );

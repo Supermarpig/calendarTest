@@ -73,9 +73,11 @@ export function RangeCalendarItem({
             ) {
               // out of range
               return (
-                <CalendarDay key={key} className={dayColor.disabled && dayClass}>
-                  {date}
-                </CalendarDay>
+                day && (
+                  <CalendarDay key={key} className={dayColor.disabled && dayClass} date={day}>
+                    {date}
+                  </CalendarDay>
+                )
               );
             }
             if (isTheSameDay) {
@@ -85,6 +87,7 @@ export function RangeCalendarItem({
                   className={`${dayColor.active} flex flex-col justify-center `}
                   key={key}
                   onClick={() => handleSelect(day)}
+                  date={day}
                 >
                   <span
                     className="desktop:size-8 size-[45px] rounded-full absolute z-[-1]"
@@ -105,7 +108,8 @@ export function RangeCalendarItem({
                 <CalendarDay
                   key={key}
                   className={`${dayColor.isRangeEnd} flex flex-col justify-center `}
-                  onClick={() => isCurrentMonth &&  handleSelect(day)}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
                 >
                   <span
                     className={dayColor.isRangeBefore}
@@ -134,6 +138,7 @@ export function RangeCalendarItem({
                   key={key}
                   className={`${dayColor.isRangeStart} flex flex-col justify-center `}
                   onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
                 >
                   <span
                     className={dayColor.isRangeBefore}
@@ -161,7 +166,8 @@ export function RangeCalendarItem({
                 <CalendarDay
                   className={`${dayColor.active} flex flex-col justify-center `}
                   key={key}
-                  onClick={() => isCurrentMonth &&  handleSelect(day)}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
                 >
                   <span
                     className="desktop:size-8 size-[45px] rounded-full absolute z-[-1]"
@@ -190,6 +196,7 @@ export function RangeCalendarItem({
                   key={key}
                   className={dayColor.isRange}
                   onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
                   style={{
                     background: `${convertHexToRGBA(themeColor, 0.25)}`
                   }}
@@ -204,7 +211,8 @@ export function RangeCalendarItem({
               <CalendarDay
                 key={key}
                 className={dayColor.idle && dayClass}
-                onClick={() => isCurrentMonth &&  handleSelect(day)}
+                onClick={() => isCurrentMonth && handleSelect(day)}
+                date={day}
               >
                 {date}
                 <CalendarDayHoverSpan />

@@ -151,7 +151,7 @@ function SingleCalendarComponent({
             const dayClass = `${isCurrentMonth ? DAY_COLOR.idle : `${DAY_COLOR.disabled}`} ${isCurrentMonth ? 'cursor-pointer' : 'cursor-no-drop'}`;
             if (day && (day < minDate || day > maxDate)) {
               return (
-                <CalendarDay key={key} className={`${DAY_COLOR.disabled} ${dayClass}`}>
+                <CalendarDay key={key} className={`${DAY_COLOR.disabled} ${dayClass}`} date={day}>
                   {date}
                 </CalendarDay>
               );
@@ -161,13 +161,14 @@ function SingleCalendarComponent({
                 <CalendarDay
                   key={key}
                   className={`${DAY_COLOR.active} flex flex-col items-center justify-center`}
-                  onClick={() => isCurrentMonth &&  handleSelect(day)}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
                 >
                   <span
                     style={{ backgroundColor: `${themeColor}` }}
                     className={DAY_COLOR.activeBefore}
                   />
-                  <span className={selectText && 'h-[16px]'  }>{date}</span>
+                  <span className={selectText && 'h-[16px]'}>{date}</span>
                   {selectText && (
                     <span className={`w-full small-regular ${DAY_COLOR.active}`}>{selectText}</span>
                   )}
@@ -175,13 +176,16 @@ function SingleCalendarComponent({
               );
             }
             return (
-              <CalendarDay
-                key={key}
-                className={DAY_COLOR.idle && dayClass}
-                onClick={() => isCurrentMonth &&  handleSelect(day)}
-              >
-                {date}
-              </CalendarDay>
+              day && (
+                <CalendarDay
+                  key={key}
+                  className={DAY_COLOR.idle && dayClass}
+                  onClick={() => isCurrentMonth && handleSelect(day)}
+                  date={day}
+                >
+                  {date}
+                </CalendarDay>
+              )
             );
           })}
         </div>
