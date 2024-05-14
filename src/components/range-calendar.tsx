@@ -25,12 +25,12 @@ function RangeCalendarComponent({
 
   const DAY_COLOR = {
     idle: 'text-slate-500',
-    active: `text-white-500`,
+    active: `text-white`,
     disabled: 'text-slate-200',
-    isRangeStart: `rounded-none text-white-500`,
+    isRangeStart: `rounded-none text-white`,
     isRangeBefore: 'z-[-3] absolute w-1/2 h-full bg-opacity-25 ',
     isRangeAfter: 'desktop:size-8 size-[45px] rounded-full absolute z-[-2]',
-    isRangeEnd: `rounded-none text-white-500 `,
+    isRangeEnd: `rounded-none text-white`,
     isRange: `rounded-none `
   };
 
